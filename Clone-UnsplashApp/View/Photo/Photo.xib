@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PhotoViewController" customModule="Clone_UnsplashApp" customModuleProvider="target">
+            <connections>
+                <outlet property="photoCollectionView" destination="mP7-Lo-1nf" id="haA-5h-S9g"/>
+                <outlet property="view" destination="iN0-l3-epB" id="rCZ-qZ-GHk"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="mP7-Lo-1nf">
+                    <rect key="frame" x="0.0" y="44" width="375" height="734"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <collectionViewLayout key="collectionViewLayout" id="F4C-da-Nb4" customClass="CustomLayout" customModule="Clone_UnsplashApp" customModuleProvider="target"/>
+                </collectionView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="mP7-Lo-1nf" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="qC4-qW-ZTr"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="mP7-Lo-1nf" secondAttribute="trailing" id="s1E-mD-CaY"/>
+                <constraint firstItem="mP7-Lo-1nf" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="sbd-hh-qom"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="mP7-Lo-1nf" secondAttribute="bottom" id="wpi-SZ-7Lk"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="139" y="153"/>
+        </view>
+    </objects>
+</document>

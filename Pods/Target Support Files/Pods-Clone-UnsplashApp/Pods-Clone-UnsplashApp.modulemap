@@ -1,0 +1,6 @@
+module Pods_Clone_UnsplashApp {
+  umbrella header "Pods-Clone-UnsplashApp-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,55 @@
+PODS:
+  - Alamofire (5.0.5)
+  - AlamofireImage (4.0.3):
+    - Alamofire (< 6.0.0, >= 5.0.2)
+  - Differentiator (4.0.1)
+  - Moya (14.0.0):
+    - Moya/Core (= 14.0.0)
+  - Moya/Core (14.0.0):
+    - Alamofire (~> 5.0)
+  - RxCocoa (5.1.1):
+    - RxRelay (~> 5)
+    - RxSwift (~> 5)
+  - RxDataSources (4.0.1):
+    - Differentiator (~> 4.0)
+    - RxCocoa (~> 5.0)
+    - RxSwift (~> 5.0)
+  - RxRelay (5.1.1):
+    - RxSwift (~> 5)
+  - RxSwift (5.1.1)
+  - SVProgressHUD (2.2.5)
+
+DEPENDENCIES:
+  - AlamofireImage
+  - Moya
+  - RxCocoa
+  - RxDataSources
+  - RxSwift
+  - SVProgressHUD
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - AlamofireImage
+    - Differentiator
+    - Moya
+    - RxCocoa
+    - RxDataSources
+    - RxRelay
+    - RxSwift
+    - SVProgressHUD
+
+SPEC CHECKSUMS:
+  Alamofire: df2f8f826963b08b9a870791ad48e07a10090b2e
+  AlamofireImage: 3d1a2010519e58675318735580eb856e88840ff7
+  Differentiator: 886080237d9f87f322641dedbc5be257061b0602
+  Moya: 5b45dacb75adb009f97fde91c204c1e565d31916
+  RxCocoa: 32065309a38d29b5b0db858819b5bf9ef038b601
+  RxDataSources: efee07fa4de48477eca0a4611e6d11e2da9c1114
+  RxRelay: d77f7d771495f43c556cbc43eebd1bb54d01e8e9
+  RxSwift: 81470a2074fa8780320ea5fe4102807cb7118178
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
+
+PODFILE CHECKSUM: ffeaa18b726b51d0ef067a37bcbef2ebed50fc0b
+
+COCOAPODS: 1.8.4
