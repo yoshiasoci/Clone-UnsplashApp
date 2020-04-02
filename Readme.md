@@ -14,3 +14,4 @@
 - [X] Detail Photo
 - [X] Photo Collection Menu
 - [X] Search Bar for Search Colelction Photo
+- [X] Download Image
