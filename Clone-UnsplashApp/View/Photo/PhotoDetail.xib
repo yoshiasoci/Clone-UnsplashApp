@@ -10,7 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PhotoDetailViewController" customModule="Clone_UnsplashApp" customModuleProvider="target">
             <connections>
-                <outlet property="photoImage" destination="yu1-md-gfj" id="3rd-kj-T4w"/>
+                <outlet property="photoImage" destination="yu1-md-gfj" id="vhT-WS-pZs"/>
                 <outlet property="totalDownloadPhotoLabel" destination="vsx-Ot-u5r" id="paT-Rs-Lze"/>
                 <outlet property="totalLikePhotoLabel" destination="zyS-8Y-WcW" id="cpQ-kP-3vk"/>
                 <outlet property="totalViewPhotoLabel" destination="eEx-zK-u3D" id="Agf-Y3-GOZ"/>

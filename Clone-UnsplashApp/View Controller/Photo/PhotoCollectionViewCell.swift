@@ -7,23 +7,16 @@
 //
 
 import UIKit
-import AlamofireImage
 
 class PhotoCollectionViewCell: UICollectionViewCell {
     
-    @IBOutlet weak var photoImageView: UIImageView!
+    @IBOutlet weak var photoImageViewWithLoading: CustomImageView!
     func populateCell(mediaUrl: String?) {
-        if
-            let thumbURLString = mediaUrl,
-            let url = URL(string: thumbURLString) {
-            photoImageView.af.setImage(withURL: url)
-        } else {
-            photoImageView.image = nil
-        }
+        photoImageViewWithLoading.ImageViewLoading(mediaUrl: mediaUrl!)
     }
     
     override func prepareForReuse() {
-        self.photoImageView.image = nil
+        self.photoImageViewWithLoading.image = nil
         
     }
     

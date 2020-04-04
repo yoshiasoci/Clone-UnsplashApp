@@ -7,29 +7,19 @@
 //
 
 import UIKit
-import AlamofireImage
 
 class PhotoCollectionCollectionViewCell: UICollectionViewCell {
     
-    @IBOutlet weak var collectionPhotoImage: UIImageView!
+    @IBOutlet weak var collectionPhotoImageWithLoading: CustomImageView!
     @IBOutlet weak var collectionPhotoTitleLabel: UILabel!
     
     func populateCell(mediaUrl: String?, collectionTitle: String?) {
-        if
-            let thumbURLString = mediaUrl,
-            let url = URL(string: thumbURLString) {
-            collectionPhotoImage.af.setImage(withURL: url)
-        } else {
-            collectionPhotoImage.image = nil
-        }
-//        collectionPhotoImage.setImageFrom(mediaUrl!)
+        collectionPhotoImageWithLoading.ImageViewLoading(mediaUrl: mediaUrl!)
         collectionPhotoTitleLabel.text = collectionTitle
     }
     
      override func prepareForReuse() {
-    //        activityIndicator.startAnimating()
-            collectionPhotoImage.image = nil
-        }
-    
+        collectionPhotoImageWithLoading.image = nil
+    }
     
 }

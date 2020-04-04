@@ -19,7 +19,6 @@ class PhotoDetailViewController: UIViewController {
     @IBOutlet weak var totalLikePhotoLabel: UILabel!
     @IBOutlet weak var totalDownloadPhotoLabel: UILabel!
     
-    
     var viewModelPhotoDetail: PhotoDetailViewModelable
     let disposeBag = DisposeBag()
     
