@@ -1,6 +1,6 @@
 # Requirement
 
-- [X] Use API Unsplash access key(d8a272c480b258b875d82f4062d6c52e4ae7f4b4656add778d71e9b638b2f8be)
+- [X] Use Unsplash API
 - [X] Use Swift 5
 - [X] IDE using Xcode Version 11.1
 - [X] Target minimun iOS Version 10.0
