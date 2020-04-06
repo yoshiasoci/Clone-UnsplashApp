@@ -81,6 +81,14 @@ class PhotoCollectionViewController: UIViewController, UISearchBarDelegate, UICo
                 cell.populateCell(mediaUrl: data?.cover_photo.urls.thumb, collectionTitle: data?.title)
         }.disposed(by: disposeBag)
         
+        //Cell Tapped
+        self.photoClCollectionView.rx.modelSelected(PhotoCollection.self)
+            .subscribe(onNext: { (photoCollection) in
+//                print(photoCollection.id)
+                self.photoCollectionViewModel.collectionID.accept(photoCollection.id)
+                self.photoCollectionViewModel.collectionTapped.onNext(())
+        }).disposed(by: disposeBag)
+        
     }
     
     private func makeSearchButton() {

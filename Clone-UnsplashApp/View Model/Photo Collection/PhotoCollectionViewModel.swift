@@ -15,6 +15,7 @@ import SVProgressHUD
 protocol PhotoCollectionViewModelable {
     
     //MARK: input
+    var collectionTapped: PublishSubject<Void> { get }
     var searchTapped: PublishSubject<Void> { get }
     var searchBarText: BehaviorRelay<String?> { get }
     
@@ -22,6 +23,9 @@ protocol PhotoCollectionViewModelable {
     var pageCollectionPhoto: BehaviorRelay<Int?> { get }
     
     var needLoading: PublishSubject<Bool> { get }
+    
+    var collectionID: BehaviorRelay<Int?> { get }
+    var detailpPhotoCollectionSubscription: ((_ collectionID: Int) -> Void)? { get set }
     
     //MARK: output
     var photoClCollectionView: BehaviorRelay<[PhotoCollection?]> { get }
@@ -34,12 +38,16 @@ class PhotoCollectionViewModel: PhotoCollectionViewModelable {
     
     var photoClCollectionView = BehaviorRelay<[PhotoCollection?]>(value: [])
     var searchTapped = PublishSubject<Void>()
+    var collectionTapped = PublishSubject<Void>()
     let searchBarText = BehaviorRelay<String?>(value: "")
     var endScroll = PublishSubject<Void>()
     let pageCollectionPhoto = BehaviorRelay<Int?>(value: 1)
     
     var searchCollectionPhoto = BehaviorRelay<Bool>(value: false)
     var totalPages = BehaviorRelay<Int?>(value: 1)
+    
+    let collectionID = BehaviorRelay<Int?>(value: nil)
+    var detailpPhotoCollectionSubscription: ((_ collectionID: Int) -> Void)?
     
     var needLoading = PublishSubject<Bool>()
     
@@ -57,6 +65,13 @@ class PhotoCollectionViewModel: PhotoCollectionViewModelable {
             self.totalPages.accept(1)
             self.searchCollectionPhoto.accept(true)
             self.addCollectionPhotoPage()
+            })
+        .disposed(by: disposeBag)
+        
+        collectionTapped.subscribe(onNext: { [weak self] _ in
+            guard let self =  self else { return }
+            self.detailpPhotoCollectionSubscription?(self.collectionID.value!)
+            print(self.collectionID.value!)
             })
         .disposed(by: disposeBag)
         

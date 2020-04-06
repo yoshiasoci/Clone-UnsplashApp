@@ -37,6 +37,7 @@ class PhotoViewController: UIViewController, UISearchBarDelegate, UICollectionVi
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        loading.show()
         
         if let layout = photoCollectionView?.collectionViewLayout as? CustomLayout {
             layout.delegate = self
@@ -91,18 +92,6 @@ class PhotoViewController: UIViewController, UISearchBarDelegate, UICollectionVi
             .bind(to: photoCollectionView.rx.items(cellIdentifier: "PhotoCell", cellType: PhotoCollectionViewCell.self)) { (row,data,cell) in
                 cell.populateCell(mediaUrl: data?.urls.small)
         }.disposed(by: disposeBag)
-        
-////        animation cell
-//        photoCollectionView.rx.willDisplayCell
-//            .subscribe(onNext: ({ (cell,indexPath) in
-//                cell.alpha = 0
-//                let transform = CATransform3DTranslate(CATransform3DIdentity, 0, -250, 0)
-//                cell.layer.transform = transform
-//                UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.5, options: .curveEaseOut, animations: {
-//                    cell.alpha = 1
-//                    cell.layer.transform = CATransform3DIdentity
-//                }, completion: nil)
-//            })).disposed(by: disposeBag)
         
         //binding cell tapable
         self.photoCollectionView.rx.modelSelected(PhotoList.self)

@@ -22,7 +22,7 @@ class PhotoCoordinator: NSObject, ParentCoordinator, UINavigationControllerDeleg
     func start() {
         navigationController.delegate = self
         
-        let viewModel = PhotoViewModel()
+        let viewModel = PhotoViewModel(listPhotoColection: false, collectionID: 0)
         let viewController = PhotoViewController(viewModel: viewModel)
         
         viewModel.detailPhotoSubscription = { [weak self] photoID in

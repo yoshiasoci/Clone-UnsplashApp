@@ -21,6 +21,7 @@ protocol PhotoViewModelable {
     var pagePhoto: BehaviorRelay<Int?> { get }
     
     var photoID: BehaviorRelay<String?> { get }
+    var collectionID: BehaviorRelay<Int?> { get }
     var detailPhotoSubscription: ((_ photoID: String) -> Void)? { get set }
     
     var needLoading: PublishSubject<Bool> { get }
@@ -39,18 +40,26 @@ class PhotoViewModel: PhotoViewModelable {
     var searchTapped = PublishSubject<Void>()
     let searchBarText = BehaviorRelay<String?>(value: "")
     let photoID = BehaviorRelay<String?>(value: "")
+    let collectionID = BehaviorRelay<Int?>(value: nil)
     var endScroll = PublishSubject<Void>()
     let pagePhoto = BehaviorRelay<Int?>(value: 1)
     
     var detailPhotoSubscription: ((_ photoID: String) -> Void)?
     
     var searchPhoto = BehaviorRelay<Bool>(value: false)
+    var loadPhotoCollection = BehaviorRelay<Bool>(value: false)
     var totalPages = BehaviorRelay<Int?>(value: 1)
     
     var needLoading = PublishSubject<Bool>()
     
-    init() {
-        self.getListPhoto(page: 1)
+    init(listPhotoColection: Bool, collectionID: Int) {
+        if listPhotoColection == true {
+            self.collectionID.accept(collectionID)
+            self.getListCollectionPhoto(collectionID: collectionID, page: 1)
+            self.loadPhotoCollection.accept(true)
+        } else {
+            self.getListPhoto(page: 1)
+        }
         self.makeSubscription()
     }
     
@@ -87,8 +96,13 @@ class PhotoViewModel: PhotoViewModelable {
                 self.pagePhoto.accept(self.pagePhoto.value! + 1)
             }
         } else {
-            getListPhoto(page: self.pagePhoto.value! + 1)
-            self.pagePhoto.accept(self.pagePhoto.value! + 1)
+            if loadPhotoCollection.value == true {
+                self.getListCollectionPhoto(collectionID: collectionID.value!, page: self.pagePhoto.value! + 1)
+                self.pagePhoto.accept(self.pagePhoto.value! + 1)
+            } else {
+                getListPhoto(page: self.pagePhoto.value! + 1)
+                self.pagePhoto.accept(self.pagePhoto.value! + 1)
+            }
         }
     }
     
@@ -96,6 +110,24 @@ class PhotoViewModel: PhotoViewModelable {
         self.needLoading.onNext(true)
         self.searchPhoto.accept(false)
         apiServiceProvider.request(.getListPhoto(clientID: clientID, page: page)) { (result) in
+            switch result {
+                case .failure(let error):
+                    print(error)
+                    self.needLoading.onNext(false)
+                case .success(let response):
+                    let photoData = try? JSONDecoder().decode([PhotoList].self, from: response.data)
+                    print(response)
+                    
+                    self.photoCollectionView.accept(self.photoCollectionView.value + (photoData ?? []))
+                    self.needLoading.onNext(false)
+            }
+        }
+    }
+    
+    private func getListCollectionPhoto(collectionID: Int, page: Int) {
+        self.needLoading.onNext(true)
+        self.searchPhoto.accept(false)
+        apiServiceProvider.request(.getDetailPhotoCollection(collectionPhotoID: collectionID, clientID: clientID, page: page)) { (result) in
             switch result {
                 case .failure(let error):
                     print(error)

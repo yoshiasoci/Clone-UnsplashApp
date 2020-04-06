@@ -21,11 +21,23 @@ class PhotoCollectionCoordinator: NSObject, ParentCoordinator, UINavigationContr
     
     func start() {
         navigationController.delegate = self
+        
         let viewModel = PhotoCollectionViewModel()
         let viewController = PhotoCollectionViewController(viewModel: viewModel)
         
+        viewModel.detailpPhotoCollectionSubscription = { [weak self] collectionID in
+            self?.detailPhotoCollectionSubscription(collectionID: collectionID)
+        }
+        
         self.viewController = viewController
         navigationController.pushViewController(self.viewController, animated: false)
+    }
+    
+    func detailPhotoCollectionSubscription(collectionID: Int) {
+        let child = PhotoCollectionDetailCoordinator(navigationController: navigationController)
+        child.parentCoordinator = self
+        childCoordinators.append(child)
+        child.start(collectionID: collectionID)
     }
     
 }
